@@ -5,9 +5,12 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "New Battter Input", menuName = "InputReader/Batter")]
 public class BatterInputReader : ScriptableObject, GameInput.IBatterNRunnerActions
 {
+
+    public static BatterInputReader Instance { get; private set; }
     public event UnityAction<Vector2> MoveActions;
     public event UnityAction SwingActions;
     public event UnityAction<bool> BuntActions;
+    public bool useOldInputSystem;
 
     private GameInput m_GameInput;
 
@@ -17,22 +20,43 @@ public class BatterInputReader : ScriptableObject, GameInput.IBatterNRunnerActio
         {
             m_GameInput = new GameInput();
             m_GameInput.BatterNRunner.SetCallbacks(this);
+
         }
         m_GameInput.BatterNRunner.Enable();
     }
 
+    public void Awake()
+    {
+        Instance = this;
+    }
     public void OnDisable()
     {
         m_GameInput.BatterNRunner.Disable();
     }
 
+    private float updateInterval = 1.0f;
+    private float timer = 0.0f;
 
+    public void CustomUpdate()
+    {
+        // Perform update logic here
+        Debug.Log("CustomUpdate called.");
+
+        // Simulate an update loop
+        timer += Time.deltaTime;
+        if (timer >= updateInterval)
+        {
+            // Execute update logic at a specific interval
+            timer = 0.0f;
+            Debug.Log("Interval reached.");
+        }
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         if (MoveActions != null)
         {
             MoveActions.Invoke(context.ReadValue<Vector2>());
-            Debug.Log("PlayerMoved");
+            Debug.Log(context.ReadValue<Vector2>());
         }
     }
     public void OnSwing(InputAction.CallbackContext context)
@@ -40,7 +64,7 @@ public class BatterInputReader : ScriptableObject, GameInput.IBatterNRunnerActio
         if (SwingActions != null)
         {
             SwingActions.Invoke();
-            Debug.Log("BatSwing");
+            //Debug.Log("BatSwing");
         }
     }
     public void OnBunt(InputAction.CallbackContext context)

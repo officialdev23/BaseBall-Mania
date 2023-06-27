@@ -14,10 +14,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
+using System.Diagnostics;
+
 
 public partial class @GameInput : IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
+
     public @GameInput()
     {
         asset = InputActionAsset.FromJson(@"{
@@ -567,6 +570,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     {
         asset.Disable();
     }
+
     public IEnumerable<InputBinding> bindings => asset.bindings;
 
     public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
@@ -674,6 +678,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
             }
         }
     }
+
+
     public BatterNRunnerActions @BatterNRunner => new BatterNRunnerActions(this);
 
     // Defense
@@ -708,6 +714,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         }
     }
     public DefenseActions @Defense => new DefenseActions(this);
+
     public interface IPitcherActions
     {
         void OnSelect(InputAction.CallbackContext context);

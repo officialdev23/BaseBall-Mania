@@ -9,7 +9,7 @@ namespace Batter
     {
         private enum CursorState { FOCUS, MEAT, BUNT };
         
-        public BatterInputReader BatterInput;
+        public CustomUpdater BatterInput;
 
         public VoidEvent SwingEvent;
         public Vector3Event BallExitVelEvent;

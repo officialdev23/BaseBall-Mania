@@ -7,7 +7,7 @@ public class MenuControl : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.Menu))
+        if (Input.GetKey(KeyCode.P)|| Input.GetKey(KeyCode.Menu))
         {
             StartGame();
         }

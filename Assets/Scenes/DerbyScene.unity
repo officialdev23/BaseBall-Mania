@@ -504,7 +504,7 @@ MonoBehaviour:
   OutBoundLimit: 0
   BorderRectT: {fileID: 699586789}
   Speed: 200
-  BatterInput: {fileID: 11400000, guid: 254a48e8d6e657b4c885c3e0da0fff38, type: 2}
+  BatterInput: {fileID: 251461904}
   SwingEvent: {fileID: 11400000, guid: 14a72d7422bb8dc4c8dada0f27b12149, type: 2}
   BallExitVelEvent: {fileID: 11400000, guid: 20dc3691580ce134c90cbdab67f49361, type: 2}
   MeatCursor: {fileID: 447288768}
@@ -892,6 +892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 251461903}
   - component: {fileID: 251461902}
+  - component: {fileID: 251461904}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -929,6 +930,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &251461904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251461901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9504772c1aa1774c87f260d2bb9c7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &298681462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3350,7 +3363,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3353293, y: 1}
+    m_SensorSize: {x: 2.4700599, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6707,7 +6720,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.3353293, y: 1}
+    m_SensorSize: {x: 2.4700599, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
