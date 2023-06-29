@@ -8,8 +8,14 @@ public class DerbyManager : MonoBehaviour
     public VoidEvent GameOverEvent;
     public MenuInputReader InputReader;
 
-    private int m_Count = 15;
+    public static DerbyManager Instance { get; private set; }
 
+    public int m_Count = 5;
+
+    public void Awake()
+    {
+        Instance = this;
+    }
     public void DecrementCount()
     {
         --m_Count;
@@ -23,9 +29,15 @@ public class DerbyManager : MonoBehaviour
         }
     }
 
+    public void afterWinScene()
+    {
+        GameOverEvent.Raise();
+        InputReader.StartActions += Restart;
+    }
+
     private void Restart()
     {
         InputReader.StartActions -= Restart;
-        SceneManager.LoadScene("DerbyScene",LoadSceneMode.Single);
+        SceneManager.LoadScene("DerbyScene", LoadSceneMode.Single);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Result
 {
     public enum ResultState { StrikeOut, Ground, Foul, HR };
-    
+
     public class ResultManager : MonoBehaviour
     {
         public Text MaxDistanceText;
@@ -24,19 +24,34 @@ namespace Result
             HRCountText.text = "" + m_HRCount;
         }
 
+        public void Update()
+        {
+            winCondition();
+        }
+
         public void UpdateHR(int result)
         {
             m_CurrentResult = (ResultState)result;
-            
+
             if (m_CurrentResult == ResultState.HR)
             {
-                HRCountText.text = "" + ++ m_HRCount;
+                HRCountText.text = "" + ++m_HRCount;
+            }
+
+        }
+
+        public void winCondition()
+        {
+            if (m_HRCount == 1)
+            {
+                DerbyManager.Instance.m_Count = 1;
+                Debug.Log("Working homerun");
             }
         }
 
         public void UpdateMaxDistance()
         {
-            if(m_CurrentResult == ResultState.HR && m_Distance > m_MaxDistance)
+            if (m_CurrentResult == ResultState.HR && m_Distance > m_MaxDistance)
             {
                 m_MaxDistance = m_Distance;
                 m_Distance = 0;

@@ -14,13 +14,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
-using System.Diagnostics;
-
 
 public partial class @GameInput : IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-
     public @GameInput()
     {
         asset = InputActionAsset.FromJson(@"{
@@ -381,17 +378,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""fb26fac6-1a7c-4ba1-afc9-9148c7c8960e"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""FireTv"",
                     ""id"": ""a4d7b16f-400c-4c57-aa12-8272b9c06608"",
                     ""path"": ""2DVector"",
@@ -405,7 +391,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""8199aa9f-0454-4aa0-8fdb-f4f45f69193d"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -570,7 +556,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     {
         asset.Disable();
     }
-
     public IEnumerable<InputBinding> bindings => asset.bindings;
 
     public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
@@ -678,8 +663,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
             }
         }
     }
-
-
     public BatterNRunnerActions @BatterNRunner => new BatterNRunnerActions(this);
 
     // Defense
@@ -714,7 +697,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         }
     }
     public DefenseActions @Defense => new DefenseActions(this);
-
     public interface IPitcherActions
     {
         void OnSelect(InputAction.CallbackContext context);
@@ -732,53 +714,3 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnNewaction(InputAction.CallbackContext context);
     }
 }
-
-
-
-
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.SceneManagement;
-
-//public class PlayerController : MonoBehaviour
-//{
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        // Handle movement
-//        if (Input.GetKey(KeyCode.A))
-//        {
-//            // Move left
-//            MoveLeft();
-//        }
-//        else if (Input.GetKey(KeyCode.D))
-//        {
-//            // Move right
-//            MoveRight();
-//        }
-
-//        // Handle swing action
-//        if (Input.GetKeyDown(KeyCode.Space))
-//        {
-//            // Perform swing action
-//            Swing();
-//        }
-//    }
-
-//    private void MoveLeft()
-//    {
-//        // Implement your logic for moving left
-//    }
-
-//    private void MoveRight()
-//    {
-//        // Implement your logic for moving right
-//    }
-
-//    private void Swing()
-//    {
-//        // Implement your logic for the swing action
-//    }
-//}
-
