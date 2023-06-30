@@ -44,6 +44,7 @@ public class PitcherAnimation : MonoBehaviour
      */
     public void ThrowRelease()
     {
+        BatterAnimation.Instance.Leonard.transform.rotation = Quaternion.Euler(0f, -90f, 0);
         Debug.Log("Reached release point");
         ThrowEvent.Raise();
         SetState(State.IDLE, 0.0f);

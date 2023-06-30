@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DerbyScene.unity
     guid: 6bffeb1cd85d514429948e3efbf169d1
+  - enabled: 1
+    path: Assets/Scenes/LevelSelectionScene.unity
+    guid: e3ef0766e90513849b21ed0b744fd7a5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c07250c4daee89e4cafe582b242a238b, type: 2}

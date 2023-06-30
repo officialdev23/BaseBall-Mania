@@ -9,11 +9,15 @@ namespace Result
 
     public class ResultManager : MonoBehaviour
     {
+
+        public static ResultManager Instance { get; private set; }
+
         public Text MaxDistanceText;
         public Text TempDistanceText;
         public Text HRCountText;
+        public Text Target;
 
-        private uint m_HRCount = 0;
+        public uint m_HRCount = 0;
         private int m_MaxDistance = 0;
         private int m_Distance = 0;
         private ResultState m_CurrentResult = ResultState.Ground;
@@ -22,6 +26,12 @@ namespace Result
         {
             MaxDistanceText.text = m_MaxDistance + "m";
             HRCountText.text = "" + m_HRCount;
+            Target.text = "" + LevelManager.Instance.homeRunNeeded[LevelManager.Instance.levelNumber - 1];
+        }
+
+        public void Awake()
+        {
+            Instance = this;
         }
 
         public void Update()
@@ -42,7 +52,7 @@ namespace Result
 
         public void winCondition()
         {
-            if (m_HRCount == 1)
+            if (m_HRCount == LevelManager.Instance.homeRunNeeded[LevelManager.Instance.levelNumber - 1])
             {
                 DerbyManager.Instance.m_Count = 1;
                 Debug.Log("Working homerun");

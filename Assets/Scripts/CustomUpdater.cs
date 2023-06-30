@@ -19,23 +19,23 @@ public class CustomUpdater : MonoBehaviour, GameInput.IBatterNRunnerActions
     public void Update()
     {
         // Handle movement keys
-        if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             m_IsMKeyPressed = true;
             OnMove(new InputAction.CallbackContext());
         }
-        else if (Input.GetKeyUp(KeyCode.M) || Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyUp(KeyCode.M) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             m_IsMKeyPressed = false;
             OnMove(new InputAction.CallbackContext());
         }
 
-        if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.LeftApple))
         {
             m_IsNKeyPressed = true;
             OnMove(new InputAction.CallbackContext());
         }
-        else if (Input.GetKeyUp(KeyCode.N) || Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyUp(KeyCode.N) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
             m_IsNKeyPressed = false;
             OnMove(new InputAction.CallbackContext());
@@ -46,7 +46,7 @@ public class CustomUpdater : MonoBehaviour, GameInput.IBatterNRunnerActions
             m_IsKKeyPressed = true;
             OnMove(new InputAction.CallbackContext());
         }
-        else if (Input.GetKeyUp(KeyCode.K) || Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.UpArrow))
         {
             m_IsKKeyPressed = false;
             OnMove(new InputAction.CallbackContext());
@@ -57,7 +57,7 @@ public class CustomUpdater : MonoBehaviour, GameInput.IBatterNRunnerActions
             m_IsJKeyPressed = true;
             OnMove(new InputAction.CallbackContext());
         }
-        else if (Input.GetKeyUp(KeyCode.J) || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyUp(KeyCode.J) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             m_IsJKeyPressed = false;
             OnMove(new InputAction.CallbackContext());
@@ -69,7 +69,7 @@ public class CustomUpdater : MonoBehaviour, GameInput.IBatterNRunnerActions
             m_IsHKeyPressed = true;
             OnSwing(new InputAction.CallbackContext());
         }
-        else if (Input.GetKeyUp(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton0))
+        else if (Input.GetKeyUp(KeyCode.H) || Input.GetKeyUp(KeyCode.JoystickButton0))
         {
             m_IsHKeyPressed = false;
         }

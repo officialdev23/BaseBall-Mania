@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class DerbyManager : MonoBehaviour
 {
@@ -10,17 +11,32 @@ public class DerbyManager : MonoBehaviour
 
     public static DerbyManager Instance { get; private set; }
 
-    public int m_Count = 5;
+    public int m_Count;
 
     public void Awake()
     {
         Instance = this;
     }
+
+    public void Start()
+    {
+        m_Count = LevelManager.Instance.levelBalls[LevelManager.Instance.levelNumber - 1];
+        RemainCountText.text = ""+m_Count;
+    }
+
+    public void Update()
+    {
+        if(m_Count == 0 )
+        {
+            StartCoroutine("waitBeforeExit");
+            //afterWinScene();
+        }
+    }
     public void DecrementCount()
     {
         --m_Count;
         RemainCountText.text = "" + m_Count;
-        if (m_Count == 0)
+        if (m_Count == 0 || m_Count< 0)
         {
             //GameOver
             //Display Result
@@ -31,6 +47,7 @@ public class DerbyManager : MonoBehaviour
 
     public void afterWinScene()
     {
+        Debug.Log("I am called");
         GameOverEvent.Raise();
         InputReader.StartActions += Restart;
     }
@@ -40,4 +57,11 @@ public class DerbyManager : MonoBehaviour
         InputReader.StartActions -= Restart;
         SceneManager.LoadScene("DerbyScene", LoadSceneMode.Single);
     }
+
+    private IEnumerator waitBeforeExit()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        SceneManager.LoadScene("LevelSelectionScene", LoadSceneMode.Single);
+    }
+
 }
