@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
     public List<int> levelBalls;
     public List<int> homeRunNeeded;
+    public GameObject Level1;
 
 
     private void Awake()
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BracketManager.Instance.SetSelectedGameObject(Level1);
         //List<int> levelBalls = new List<int>() { 5, 10, 15 };
         Debug.Log("Level selection screen");
         levelNumber = 0;

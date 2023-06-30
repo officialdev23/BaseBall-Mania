@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.gamebee.plugin.core": {
+      "version": "file:C:/Programming/unity/Packages/Core",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.gamebee.plugin.utilities": {
+      "version": "file:C:/Programming/unity/Packages/Utilities",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.editorcoroutines": "1.0.0"
+      }
+    },
     "com.unity.cinemachine": {
       "version": "2.8.6",
       "depth": 0,
@@ -14,6 +28,13 @@
       "dependencies": {
         "com.unity.services.core": "1.0.1"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.editorcoroutines": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
