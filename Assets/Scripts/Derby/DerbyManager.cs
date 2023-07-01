@@ -3,11 +3,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class DerbyManager : MonoBehaviour
+public class DerbyManager : BaseScreen
 {
     public Text RemainCountText;
     public VoidEvent GameOverEvent;
     public MenuInputReader InputReader;
+    public bool showLevel;
 
     public static DerbyManager Instance { get; private set; }
 
@@ -52,16 +53,39 @@ public class DerbyManager : MonoBehaviour
         InputReader.StartActions += Restart;
     }
 
-    private void Restart()
+    public void Restart()
     {
+        
         InputReader.StartActions -= Restart;
+        
         SceneManager.LoadScene("DerbyScene", LoadSceneMode.Single);
     }
 
     private IEnumerator waitBeforeExit()
     {
+        PlayerPrefs.SetInt("ShowLevel", 1);
         yield return new WaitForSecondsRealtime(5);
-        SceneManager.LoadScene("LevelSelectionScene", LoadSceneMode.Single);
+        //ScreenManager.Instance.SetScreen(SelectionScreen);
+        
+        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+        //ScreenManager.Instance.Start();
     }
+
+
+
+    //BaseScreen Implementation
+    public override IEnumerator EnterAsync(BaseScreen previous)
+    {
+       // BracketManager.Instance.SetSelectedGameObject(levelButton);
+        yield break;
+
+    }
+
+    public override IEnumerator ExitAsync(BaseScreen next)
+    {
+        yield break;
+    }
+
+    public override void OnBack() => ScreenManager.Instance.SetScreen(MenuControl);
 
 }

@@ -3,23 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuControl : MonoBehaviour
+public class MenuControl : BaseScreen
 {
+    public static MenuControl Instance { get; private set; }
 
     public GameObject menu;
-    public GameObject trial;
+    public GameObject levelSelection;
+    public int menuStatus;
+
+    private bool returningFromDerbyScene = false;
+
     private void Update()
     {
-        if (Input.GetKey(KeyCode.P)|| Input.GetKey(KeyCode.Menu))
-        {
-            StartGame();
-        }
+        Debug.Log("This is test");
+        //if (Input.GetKey(KeyCode.P) || Input.GetKey(KeyCode.Menu))
+        //{
+        //    StartGame();
+        //}
+
+        StartCoroutine("waitBeforeLoad");
     }
 
-    private void StartGame()
+    public override IEnumerator EnterAsync(BaseScreen previous)
     {
-        SceneManager.LoadScene("LevelSelectionScene", LoadSceneMode.Single);
-        //menu.SetActive(false);
-        //trial.SetActive(true);
+        Debug.Log("Back to MenuControl");
+        returningFromDerbyScene = true; // Set returningFromDerbyScene to true when entering the menu scene
+        yield break;
+    }
+
+    public override IEnumerator ExitAsync(BaseScreen next)
+    {
+        yield break;
+    }
+
+    public override void OnBack()
+    {
+    }
+
+    public IEnumerator waitBeforeLoad()
+    {
+        yield return new WaitForSeconds(5f);
+        StartGame();
+    }
+    public void StartGame()
+    {
+        ScreenManager.Instance.SetScreen(SelectionScreen);
     }
 }
