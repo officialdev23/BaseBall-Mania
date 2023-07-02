@@ -7,12 +7,21 @@ public class DerbyManager : BaseScreen
 {
     public Text RemainCountText;
     public VoidEvent GameOverEvent;
+    public GameObject GameOverScene;
+    public GameObject GameWinScene;
+    public GameObject nextLevelBtn;
+    public GameObject restartLevelBtn;
+    public GameObject gameOverRestartLevelBtn;
+    public GameObject gameOverHomebtn;
+    public GameObject homeBtn;
     public MenuInputReader InputReader;
     public bool showLevel;
 
     public static DerbyManager Instance { get; private set; }
 
     public int m_Count;
+    public int currentLevel;
+    public bool levelComplete = false;
 
     public void Awake()
     {
@@ -23,15 +32,36 @@ public class DerbyManager : BaseScreen
     {
         m_Count = LevelManager.Instance.levelBalls[LevelManager.Instance.levelNumber - 1];
         RemainCountText.text = ""+m_Count;
+        currentLevel = LevelManager.Instance.levelNumber - 1;
     }
 
     public void Update()
     {
-        if(m_Count == 0 )
+        
+        if(m_Count == 0  && levelComplete == true)
         {
-            StartCoroutine("waitBeforeExit");
+            currentLevel = currentLevel + 1;
+            Debug.Log("The current level is" + currentLevel);
+            Time.timeScale = 0;
+            GameWinScene.SetActive(true);
+            BracketManager.Instance.SetSelectedGameObject(nextLevelBtn);
+            //StartCoroutine("waitBeforeExit");
             //afterWinScene();
         }
+        if(m_Count == 0 && levelComplete == false)
+        {
+            
+            showGameOver();
+            //StartCoroutine("waitBeforeExit");
+        }
+    }
+
+    public void showGameOver()
+    {
+        --m_Count;
+        Time.timeScale = 0;
+        GameOverScene.SetActive(true);
+        BracketManager.Instance.SetSelectedGameObject(gameOverRestartLevelBtn);
     }
     public void DecrementCount()
     {
@@ -41,17 +71,17 @@ public class DerbyManager : BaseScreen
         {
             //GameOver
             //Display Result
-            GameOverEvent.Raise();
+           // GameOverEvent.Raise();
             InputReader.StartActions += Restart;
         }
     }
 
-    public void afterWinScene()
-    {
-        Debug.Log("I am called");
-        GameOverEvent.Raise();
-        InputReader.StartActions += Restart;
-    }
+    //public void afterWinScene()
+    //{
+    //    Debug.Log("I am called");
+    //    GameOverEvent.Raise();
+    //    InputReader.StartActions += Restart;
+    //}
 
     public void Restart()
     {
@@ -63,15 +93,41 @@ public class DerbyManager : BaseScreen
 
     private IEnumerator waitBeforeExit()
     {
-        PlayerPrefs.SetInt("ShowLevel", 1);
+
         yield return new WaitForSecondsRealtime(5);
         //ScreenManager.Instance.SetScreen(SelectionScreen);
+        GameManager.IsMenuOn = false;
+       // SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MenuScene");
         
-        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+     
         //ScreenManager.Instance.Start();
     }
 
+    public void nextLevel()
+    {
+        Time.timeScale = 1;
+        currentLevel = currentLevel + 1;
+        LevelManager.Instance.SetLevelNo(currentLevel);
+        LevelManager.Instance.MoveToDerby();
+    }
 
+    public void restartLevel()
+    {
+        Time.timeScale = 1;
+        //m_Count = LevelManager.Instance.levelBalls[LevelManager.Instance.levelNumber - 1];
+        //RemainCountText.text = "" + m_Count;
+        //currentLevel = LevelManager.Instance.levelNumber - 1;
+        //LevelManager.Instance.SetLevelNo(currentLevel);
+        Start();
+        LevelManager.Instance.MoveToDerby();
+    }
+
+    public void goToHome()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+    }
 
     //BaseScreen Implementation
     public override IEnumerator EnterAsync(BaseScreen previous)

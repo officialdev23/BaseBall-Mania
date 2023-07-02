@@ -15,12 +15,11 @@ public class MenuControl : BaseScreen
 
     private void Update()
     {
-        Debug.Log("This is test");
         //if (Input.GetKey(KeyCode.P) || Input.GetKey(KeyCode.Menu))
         //{
         //    StartGame();
         //}
-
+        
         StartCoroutine("waitBeforeLoad");
     }
 

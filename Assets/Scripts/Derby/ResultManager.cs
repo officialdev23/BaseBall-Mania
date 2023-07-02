@@ -55,6 +55,7 @@ namespace Result
             if (m_HRCount == LevelManager.Instance.homeRunNeeded[LevelManager.Instance.levelNumber - 1])
             {
                 DerbyManager.Instance.m_Count = 1;
+                DerbyManager.Instance.levelComplete = true;
                 Debug.Log("Working homerun");
             }
         }
