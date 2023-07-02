@@ -30,9 +30,9 @@ public class DerbyManager : BaseScreen
 
     public void Start()
     {
-        m_Count = LevelManager.Instance.levelBalls[LevelManager.Instance.levelNumber - 1];
+        m_Count = LevelManager.Instance.levelBalls;
         RemainCountText.text = ""+m_Count;
-        currentLevel = LevelManager.Instance.levelNumber - 1;
+        currentLevel = LevelManager.Instance.levelNumber;
     }
 
     public void Update()
@@ -40,7 +40,7 @@ public class DerbyManager : BaseScreen
         
         if(m_Count == 0  && levelComplete == true)
         {
-            currentLevel = currentLevel + 1;
+            currentLevel = LevelManager.Instance.levelNumber + 1;
             Debug.Log("The current level is" + currentLevel);
             Time.timeScale = 0;
             GameWinScene.SetActive(true);
@@ -107,7 +107,7 @@ public class DerbyManager : BaseScreen
     public void nextLevel()
     {
         Time.timeScale = 1;
-        currentLevel = currentLevel + 1;
+        //currentLevel = currentLevel + 1;
         LevelManager.Instance.SetLevelNo(currentLevel);
         LevelManager.Instance.MoveToDerby();
     }

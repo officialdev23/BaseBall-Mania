@@ -10,8 +10,9 @@ public class LevelManager : MonoBehaviour
 
     public int levelNumber;
 
-    public List<int> levelBalls;
-    public List<int> homeRunNeeded;
+    public List<LvlObject> levelList;
+    public int levelBalls;
+    public int homeRunNeeded;
     public GameObject Level1;
 
 
@@ -25,7 +26,9 @@ public class LevelManager : MonoBehaviour
         BracketManager.Instance.SetSelectedGameObject(Level1);
         //List<int> levelBalls = new List<int>() { 5, 10, 15 };
         Debug.Log("Level selection screen");
-        levelNumber = 0;
+       // levelNumber = 0;
+        levelBalls = levelList[levelNumber].balls;
+        homeRunNeeded = levelList[levelNumber].target;
         
     }
 
@@ -33,12 +36,15 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         Debug.Log(levelNumber);
-        Debug.Log(levelBalls[levelNumber]);
+        Debug.Log(levelBalls);
+        Debug.Log(homeRunNeeded);
     }
 
     public void SetLevelNo( int levelNo)
     {
         levelNumber = levelNo;
+        levelBalls = levelList[levelNumber].balls;
+        homeRunNeeded = levelList[levelNumber].target;
     }
 
     public void MoveToDerby()

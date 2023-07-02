@@ -26,7 +26,7 @@ namespace Result
         {
             MaxDistanceText.text = m_MaxDistance + "m";
             HRCountText.text = "" + m_HRCount;
-            Target.text = "" + LevelManager.Instance.homeRunNeeded[LevelManager.Instance.levelNumber - 1];
+            Target.text = "" + LevelManager.Instance.homeRunNeeded;
         }
 
         public void Awake()
@@ -52,7 +52,7 @@ namespace Result
 
         public void winCondition()
         {
-            if (m_HRCount == LevelManager.Instance.homeRunNeeded[LevelManager.Instance.levelNumber - 1])
+            if (m_HRCount == LevelManager.Instance.homeRunNeeded)
             {
                 DerbyManager.Instance.m_Count = 1;
                 DerbyManager.Instance.levelComplete = true;

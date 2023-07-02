@@ -338,8 +338,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNumber: 0
-  levelBalls: 030000000a0000000f000000
-  homeRunNeeded: 010000000200000003000000
+  levelList:
+  - {fileID: 11400000, guid: 0ad94edb60d048545bdcfd003f091677, type: 2}
+  - {fileID: 11400000, guid: f8bc0c7f7c1e3fd4b813d2b6a79ce8f0, type: 2}
+  - {fileID: 11400000, guid: c6d47568cfd2a634299f2bc0d9ba3731, type: 2}
+  levelBalls: 0
+  homeRunNeeded: 0
   Level1: {fileID: 558024185}
 --- !u!1 &218964732
 GameObject:
@@ -804,7 +808,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -950,7 +954,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1117,7 +1121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &729582790
 Transform:
   m_ObjectHideFlags: 0
@@ -1436,8 +1440,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -12.5}
+  m_SizeDelta: {x: 0, y: -25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189502275
 MonoBehaviour:
